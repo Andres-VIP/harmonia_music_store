@@ -29,30 +29,30 @@ public class DataInitializationService implements CommandLineRunner {
     @Override
     @Transactional
     public void run(String... args) throws Exception {
-        // Solo poblar si no hay datos existentes
+        // Only populate if there are no existing data
         if (categoryRepository.count() == 0) {
             initializeData();
         }
     }
 
     private void initializeData() {
-        // Crear categorías
+        // Create categories
         Category guitars = createCategory("Guitars", "String instruments");
         Category pianos = createCategory("Pianos", "Keyboard instruments");
         Category percussion = createCategory("Percussion", "Percussion instruments");
         Category winds = createCategory("Wind Instruments", "Wind instruments");
         Category basses = createCategory("Basses", "Bass instruments");
         
-        // Crear instrumentos
+        // Create instruments
         createInstruments(guitars, pianos, percussion, winds, basses);
         
-        // Crear clientes
+        // Create customers
         createCustomers();
         
-        // Crear reviews
+        // Create reviews
         createReviews();
         
-        System.out.println("Base de datos poblada exitosamente con datos de ejemplo!");
+        System.out.println("Database successfully populated with sample data!");
     }
 
     private Category createCategory(String name, String description) {
@@ -157,7 +157,7 @@ public class DataInitializationService implements CommandLineRunner {
         
         customers.forEach(customer -> {
             customer.setPhone("+34" + (600000000 + (int)(Math.random() * 99999999)));
-            customer.setAddress("Calle " + (int)(Math.random() * 100) + ", Madrid");
+            customer.setAddress("Street " + (int)(Math.random() * 100) + ", New York");
             customer.setTotalPurchases(new BigDecimal(Math.random() * 5000));
             customer.setLoyaltyPoints((int)(Math.random() * 1000));
             customerRepository.save(customer);

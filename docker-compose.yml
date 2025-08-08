@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  # Base de datos PostgreSQL
+  # PostgreSQL Database
   postgres:
     image: postgres:15-alpine
     container_name: harmonia-postgres
@@ -21,7 +21,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # Redis para caché
+  # Redis for caching
   redis:
     image: redis:7-alpine
     container_name: harmonia-redis
@@ -37,7 +37,7 @@ services:
       timeout: 5s
       retries: 5
 
-  # Aplicación Spring Boot
+  # Spring Boot Application
   app:
     build: .
     container_name: harmonia-app
@@ -64,7 +64,7 @@ services:
       retries: 3
       start_period: 60s
 
-  # pgAdmin para administrar PostgreSQL (opcional)
+  # pgAdmin to manage PostgreSQL (optional)
   pgadmin:
     image: dpage/pgadmin4:latest
     container_name: harmonia-pgadmin

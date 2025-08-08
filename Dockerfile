@@ -1,52 +1,52 @@
-# Multi-stage build para optimizar el tamaño de la imagen
+# Multi-stage build to optimize image size
 FROM maven:3.8.6-openjdk-17 AS build
 
-# Establecer directorio de trabajo
+# Set working directory
 WORKDIR /app
 
-# Copiar archivos de configuración de Maven
+# Copy Maven configuration files
 COPY pom.xml .
 COPY .mvn .mvn
 COPY mvnw .
 
-# Descargar dependencias (capa de caché)
+# Download dependencies (cache layer)
 RUN mvn dependency:go-offline -B
 
-# Copiar código fuente
+# Copy source code
 COPY src ./src
 
-# Compilar la aplicación
+# Build the application
 RUN mvn clean package -DskipTests
 
-# Imagen de producción
+# Production image
 FROM openjdk:17-jre-slim
 
-# Instalar dependencias del sistema
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Crear usuario no-root para seguridad
+# Create non-root user for security
 RUN groupadd -r harmonia && useradd -r -g harmonia harmonia
 
-# Establecer directorio de trabajo
+# Set working directory
 WORKDIR /app
 
-# Copiar JAR desde la etapa de build
+# Copy JAR from the build stage
 COPY --from=build /app/target/harmonia-1.0-SNAPSHOT.jar app.jar
 
-# Cambiar propietario de archivos
+# Change file ownership
 RUN chown -R harmonia:harmonia /app
 
-# Cambiar al usuario no-root
+# Switch to non-root user
 USER harmonia
 
-# Exponer puerto
+# Expose port
 EXPOSE 8080
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8080/actuator/health || exit 1
 
-# Comando para ejecutar la aplicación
+# Command to run the application
 ENTRYPOINT ["java", "-jar", "app.jar"] 

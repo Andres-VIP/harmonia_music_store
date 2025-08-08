@@ -25,7 +25,7 @@ public class InstrumentService {
     @Autowired
     private InstrumentRepository instrumentRepository;
     
-    // Cache simple en memoria para búsquedas frecuentes
+    // Simple in-memory cache for frequent searches
     private final Map<String, List<Instrument>> searchCache = new HashMap<>();
 
     /**

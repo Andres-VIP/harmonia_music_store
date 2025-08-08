@@ -47,13 +47,13 @@ public class CacheConfig {
         return RedisCacheManager.builder(connectionFactory)
                 .cacheDefaults(config)
                 .withCacheConfiguration("instruments", 
-                    config.entryTtl(Duration.ofMinutes(15))) // Cache de instrumentos por 15 minutos
+                    config.entryTtl(Duration.ofMinutes(15))) // Instrument cache for 15 minutes
                 .withCacheConfiguration("categories", 
-                    config.entryTtl(Duration.ofHours(1))) // Cache de categorías por 1 hora
+                    config.entryTtl(Duration.ofHours(1))) // Category cache for 1 hour
                 .withCacheConfiguration("customers", 
-                    config.entryTtl(Duration.ofMinutes(45))) // Cache de clientes por 45 minutos
+                    config.entryTtl(Duration.ofMinutes(45))) // Customer cache for 45 minutes
                 .withCacheConfiguration("statistics", 
-                    config.entryTtl(Duration.ofMinutes(5))) // Cache de estadísticas por 5 minutos
+                    config.entryTtl(Duration.ofMinutes(5))) // Statistics cache for 5 minutes
                 .build();
     }
 } 

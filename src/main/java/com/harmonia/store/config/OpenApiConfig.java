@@ -18,9 +18,9 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .info(new Info()
                         .title("Harmonia Music Store API")
-                        .description("API REST completa para gestión de una tienda de instrumentos musicales. " +
-                                   "Incluye funcionalidades avanzadas como caché, búsquedas optimizadas, " +
-                                   "SQL plano, estructuras de datos avanzadas y análisis estadísticos.")
+                        .description("Complete REST API for managing a musical instruments store. " +
+                                   "Includes advanced features such as caching, optimized searches, " +
+                                   "raw SQL, advanced data structures and statistical analysis.")
                         .version("1.0.0")
                         .contact(new Contact()
                                 .name("Jaime Villamizar")
@@ -32,10 +32,10 @@ public class OpenApiConfig {
                 .servers(List.of(
                         new Server()
                                 .url("http://localhost:8080")
-                                .description("Servidor de desarrollo"),
+                                .description("Development server"),
                         new Server()
                                 .url("https://api.harmonia.com")
-                                .description("Servidor de producción")
+                                .description("Production server")
                 ));
     }
 } 
