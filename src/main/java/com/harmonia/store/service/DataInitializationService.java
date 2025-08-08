@@ -80,7 +80,7 @@ public class DataInitializationService implements CommandLineRunner {
                         InstrumentType.GUITAR, Condition.NEW, 20, 
                         "Classical guitar perfect for beginners", guitars);
         
-        // Pianos
+        // Keyboards
         createInstrument("Roland FP-30X", "Roland", new BigDecimal("699.99"), 
                         InstrumentType.PIANO, Condition.NEW, 10, 
                         "Digital piano with 88 keys and realistic sound", pianos);
