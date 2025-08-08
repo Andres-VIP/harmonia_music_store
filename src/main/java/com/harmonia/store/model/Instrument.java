@@ -100,14 +100,4 @@ public class Instrument {
         }
         return false;
     }
-    
-    public double getAverageRating() {
-        if (reviews.isEmpty()) {
-            return 0.0;
-        }
-        return reviews.stream()
-                .mapToDouble(Review::getRating)
-                .average()
-                .orElse(0.0);
-    }
 }
