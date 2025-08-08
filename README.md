@@ -184,57 +184,6 @@ GET /api/v1/instruments/price-range?minPrice=500&maxPrice=2000
 GET /api/v1/instruments/paginated?page=0&size=10&sort=name,asc
 ```
 
-## 📊 Implemented Data Structures
-
-### **1. HashMap for Caching**
-```java
-private final Map<String, List<Instrument>> searchCache = new HashMap<>();
-```
-- **Use**: Simple in-memory cache for searches
-
-### **2. HashSet for Relationships**
-```java
-private Set<Review> reviews = new HashSet<>();
-```
-- **Use**: One-to-many relationships without duplicates
-
-## 🎯 Key Features for Interview
-
-### **1. Caching System**
-- **Redis**: Distributed caching with TTL
-- **Spring Cache**: @Cacheable, @CacheEvict annotations
-- **In-memory cache**: HashMap for frequent searches
-
-### **2. Data Access**
-- **Spring Data JPA**: Repository pattern with derived methods
-- **Custom queries**: Optimized for performance
-
-### **3. Search Functionality**
-- **Name Search**: Case-insensitive search
-- **Type Search**: Filter by instrument type enum
-- **Price Search**: Range-based price filtering
-- **Stock Search**: In-stock and out-of-stock filtering
-
-### **4. Data Validation**
-- **Bean Validation**: @NotNull, @Size, @Email, @DecimalMin, etc.
-- **Custom validation messages**: User-friendly error messages
-
-### **5. Code Quality**
-- **Lombok**: Reduced boilerplate code
-- **Clean architecture**: Separation of concerns
-- **Optimized code**: Removed unused methods and classes
-
-## 🧪 Testing
-
-### **Run Tests**
-```bash
-# Unit tests
-mvn test
-
-# Integration tests
-mvn verify
-```
-
 ## 📈 Monitoring
 
 ### **Spring Boot Actuator**
@@ -246,15 +195,3 @@ mvn verify
 Once the application is running, access:
 - **Swagger UI**: http://localhost:8080/swagger-ui.html
 - **OpenAPI JSON**: http://localhost:8080/api-docs
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-**Note**: This project is designed to demonstrate fundamental Spring Boot skills appropriate for a junior developer. It focuses on basic concepts but well implemented, with recent optimizations for code quality and maintainability.
